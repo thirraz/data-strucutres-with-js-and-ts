@@ -1,22 +1,5 @@
-let items = {};
-const obj = {
-  name: "Thiago",
-  lastName: "Souza",
-};
+const ar = [123, 22, 33, 41, 256];
 
-const addObj = (el) => {
-  let count = 0;
-  if (!items[el]) {
-    items[count] = el;
-  }
-
-  return;
-};
-
-addObj("thiago");
-addObj(1);
-addObj(11);
-addObj(12);
-addObj(122);
-
-console.log(items);
+for (let i = 0; i < ar.length; i++) {
+  console.log(ar[i]);
+}

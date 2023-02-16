@@ -52,4 +52,59 @@ export class SSet {
     }
     return values;
   }
+
+  //Set (mathematic concept) operations => union, intersection and difference
+  union(otherSet: SSet): SSet {
+    const unionSet = new SSet();
+    this.values().forEach((value) => unionSet.add(value));
+    otherSet.values().forEach((value) => unionSet.add(value));
+
+    return unionSet;
+  }
+
+  intersection(otherSet: SSet): SSet {
+    const intersectionSet = new SSet();
+    const values = this.values();
+    const otherValues = otherSet.values();
+    let biggerSet = values;
+    let smallerSet = otherValues;
+    // if otherValues is smaller than values, the result will be a negative
+    if (otherValues.length - values.length > 0) {
+      biggerSet = otherValues;
+      smallerSet = values;
+    }
+    smallerSet.forEach((value) => {
+      if (biggerSet.includes(value)) {
+        intersectionSet.add(value);
+      }
+    });
+
+    return intersectionSet;
+  }
+
+  difference(otherSet: SSet): SSet {
+    const differenceSet = new SSet();
+    this.values().forEach((value) => {
+      if (!otherSet.has(value)) {
+        differenceSet.add(value);
+      }
+    });
+    return differenceSet;
+  }
+
+  isSubsetOf(otherSet: SSet): boolean {
+    if (this.size() > otherSet.size()) {
+      return false;
+    }
+
+    let isSubset = true;
+    this.values().every((value) => {
+      if (!otherSet.has(value)) {
+        isSubset = false;
+        return false;
+      }
+      return true;
+    });
+    return isSubset;
+  }
 }
